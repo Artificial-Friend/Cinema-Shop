@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL95Dialect</property>
+        <property name="connection.url">jdbc:postgresql://ec2-52-208-138-246.eu-west-1.compute.amazonaws.com:5432/dcsdjhs0f7qm2c</property>
+        <property name="connection.username">eioarskbibhyrz</property>
+        <property name="connection.password">e78b4399278bed33a97fb64543ef52f03ec3e09912266dedac887896f16770d9</property>
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="show_sql">true</property>
+        <property name="hbm2ddl.auto">create-drop</property>
+
+        <mapping class="foxtrot.uniform.charlie.kilo.model.Movie"/>
+    </session-factory>
+
+</hibernate-configuration>
