@@ -19,27 +19,24 @@ public class Movie {
         return id;
     }
 
-    public Movie setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
-        return this;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public Movie setTitle(String title) {
+    public void setTitle(String title) {
         this.title = title;
-        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public Movie setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
-        return this;
     }
 
     @Override
