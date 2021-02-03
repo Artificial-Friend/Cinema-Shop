@@ -4,9 +4,11 @@ import foxtrot.uniform.charlie.kilo.lib.Injector;
 import foxtrot.uniform.charlie.kilo.model.CinemaHall;
 import foxtrot.uniform.charlie.kilo.model.Movie;
 import foxtrot.uniform.charlie.kilo.model.MovieSession;
+import foxtrot.uniform.charlie.kilo.service.AuthenticationService;
 import foxtrot.uniform.charlie.kilo.service.CinemaHallService;
 import foxtrot.uniform.charlie.kilo.service.MovieService;
 import foxtrot.uniform.charlie.kilo.service.MovieSessionService;
+import foxtrot.uniform.charlie.kilo.service.UserService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,6 +21,10 @@ public class Main {
             = (CinemaHallService) injector.getInstance(CinemaHallService.class);
     private static final MovieSessionService movieSessionService
             = (MovieSessionService) injector.getInstance(MovieSessionService.class);
+    private static final UserService userService
+            = (UserService) injector.getInstance(UserService.class);
+    private static final AuthenticationService authenticationService
+            = (AuthenticationService) injector.getInstance(AuthenticationService.class);
 
     public static void main(String[] args) {
         Movie movie1 = new Movie();
@@ -60,5 +66,8 @@ public class Main {
         System.out.println();
         System.out.println();
         availableSessions.forEach(System.out::println);
+        authenticationService.register("alice@gmail.com", "12345");
+        authenticationService.register("bob@gmail.com", "11111");
+        System.out.println(authenticationService.login("alice@gmail.com", "12345"));
     }
 }
