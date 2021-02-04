@@ -19,6 +19,7 @@
         <mapping class="foxtrot.uniform.charlie.kilo.model.User"/>
         <mapping class="foxtrot.uniform.charlie.kilo.model.ShoppingCart"/>
         <mapping class="foxtrot.uniform.charlie.kilo.model.Ticket"/>
+        <mapping class="foxtrot.uniform.charlie.kilo.model.Order"/>
     </session-factory>
 
 </hibernate-configuration>
