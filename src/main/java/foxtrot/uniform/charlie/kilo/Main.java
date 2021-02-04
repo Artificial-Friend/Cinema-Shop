@@ -71,10 +71,10 @@ public class Main {
         System.out.println();
         System.out.println("\033[33mAvailable Sessions\033[0m");
         availableSessions.forEach(System.out::println);
-        User user2 = authenticationService.register("bob@gmail.com", "11111");
         System.out.println();
-        System.out.println("\033[33mLogging in\033[0m");
+        System.out.println("\033[33mRegistering and logging in\033[0m");
         User user1 = authenticationService.register("alice@gmail.com", "12345");
+        User user2 = authenticationService.register("bob@gmail.com", "11111");
         System.out.println(authenticationService.login("alice@gmail.com", "12345"));
         shoppingCartService.registerNewShoppingCart(user1);
         shoppingCartService.addSession(movieSession1, user1);

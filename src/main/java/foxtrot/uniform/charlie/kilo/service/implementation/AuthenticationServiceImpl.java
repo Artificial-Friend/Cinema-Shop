@@ -1,9 +1,11 @@
 package foxtrot.uniform.charlie.kilo.service.implementation;
 
+import foxtrot.uniform.charlie.kilo.dao.ShoppingCartDao;
 import foxtrot.uniform.charlie.kilo.dao.UserDao;
 import foxtrot.uniform.charlie.kilo.exception.AuthenticationException;
 import foxtrot.uniform.charlie.kilo.lib.Inject;
 import foxtrot.uniform.charlie.kilo.lib.Service;
+import foxtrot.uniform.charlie.kilo.model.ShoppingCart;
 import foxtrot.uniform.charlie.kilo.model.User;
 import foxtrot.uniform.charlie.kilo.service.AuthenticationService;
 import foxtrot.uniform.charlie.kilo.util.HashUtil;
@@ -13,6 +15,8 @@ import java.util.Optional;
 public class AuthenticationServiceImpl implements AuthenticationService {
     @Inject
     private UserDao userDao;
+    @Inject
+    private ShoppingCartDao shoppingCartDao;
 
     @Override
     public User login(String email, String password) throws AuthenticationException {
@@ -32,6 +36,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             user.setEmail(email);
             user.setSalt(HashUtil.getSalt());
             user.setPassword(HashUtil.hashPassword(password, user.getSalt()));
+            ShoppingCart shoppingCart = new ShoppingCart();
+            shoppingCart.setUser(user);
+            shoppingCartDao.add(shoppingCart);
             return userDao.add(user);
         }
         throw new AuthenticationException("ERROR: Unable to register user with email " + email);
