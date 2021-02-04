@@ -76,7 +76,6 @@ public class Main {
         User user1 = authenticationService.register("alice@gmail.com", "12345");
         User user2 = authenticationService.register("bob@gmail.com", "11111");
         System.out.println(authenticationService.login("alice@gmail.com", "12345"));
-        shoppingCartService.registerNewShoppingCart(user1);
         shoppingCartService.addSession(movieSession1, user1);
         ShoppingCart byUser = shoppingCartService.getByUser(user1);
         System.out.println();
