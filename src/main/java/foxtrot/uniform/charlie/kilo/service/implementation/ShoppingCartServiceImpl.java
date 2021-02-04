@@ -9,7 +9,6 @@ import foxtrot.uniform.charlie.kilo.model.ShoppingCart;
 import foxtrot.uniform.charlie.kilo.model.Ticket;
 import foxtrot.uniform.charlie.kilo.model.User;
 import foxtrot.uniform.charlie.kilo.service.ShoppingCartService;
-import java.util.List;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
