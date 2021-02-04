@@ -4,10 +4,13 @@ import foxtrot.uniform.charlie.kilo.lib.Injector;
 import foxtrot.uniform.charlie.kilo.model.CinemaHall;
 import foxtrot.uniform.charlie.kilo.model.Movie;
 import foxtrot.uniform.charlie.kilo.model.MovieSession;
+import foxtrot.uniform.charlie.kilo.model.ShoppingCart;
+import foxtrot.uniform.charlie.kilo.model.User;
 import foxtrot.uniform.charlie.kilo.service.AuthenticationService;
 import foxtrot.uniform.charlie.kilo.service.CinemaHallService;
 import foxtrot.uniform.charlie.kilo.service.MovieService;
 import foxtrot.uniform.charlie.kilo.service.MovieSessionService;
+import foxtrot.uniform.charlie.kilo.service.ShoppingCartService;
 import foxtrot.uniform.charlie.kilo.service.UserService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,6 +28,8 @@ public class Main {
             = (UserService) injector.getInstance(UserService.class);
     private static final AuthenticationService authenticationService
             = (AuthenticationService) injector.getInstance(AuthenticationService.class);
+    private static final ShoppingCartService shoppingCartService
+            = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
 
     public static void main(String[] args) {
         Movie movie1 = new Movie();
@@ -44,6 +49,8 @@ public class Main {
         cinemaHall2.setDescription("still dunno");
         cinemaHallService.add(cinemaHall1);
         cinemaHallService.add(cinemaHall2);
+        System.out.println();
+        System.out.println("\033[33mCinema Halls\033[0m");
         System.out.println(cinemaHallService.getAll().toString());
         MovieSession movieSession1 = new MovieSession();
         movieSession1.setMovie(movie1);
@@ -55,19 +62,28 @@ public class Main {
         movieSession2.setShowTime(LocalDateTime.of(2020, 11, 30, 23, 59));
         movieSessionService.add(movieSession1);
         movieSessionService.add(movieSession2);
+        System.out.println();
+        System.out.println("\033[33mMovie Sessions\033[0m");
         System.out.println(movieSession1);
         System.out.println(movieSession2);
-        System.out.println();
-        System.out.println("\033[33mHELLO\033[0m");
-        System.out.println("\033[33mHELLO\033[0m");
-        System.out.println();
         List<MovieSession> availableSessions = movieSessionService.findAvailableSessions(
                 movie1.getId(), LocalDate.now());
         System.out.println();
-        System.out.println();
+        System.out.println("\033[33mAvailable Sessions\033[0m");
         availableSessions.forEach(System.out::println);
-        authenticationService.register("alice@gmail.com", "12345");
-        authenticationService.register("bob@gmail.com", "11111");
+        System.out.println();
+        System.out.println("\033[33mRegistering and logging in\033[0m");
+        User user1 = authenticationService.register("alice@gmail.com", "12345");
+        User user2 = authenticationService.register("bob@gmail.com", "11111");
         System.out.println(authenticationService.login("alice@gmail.com", "12345"));
+        shoppingCartService.addSession(movieSession1, user1);
+        ShoppingCart byUser = shoppingCartService.getByUser(user1);
+        System.out.println();
+        System.out.println("\033[33mShopping Cart by user1\033[0m");
+        System.out.println(byUser);
+        shoppingCartService.clear(byUser);
+        System.out.println();
+        System.out.println("\033[33mShopping Cart by user1 after clearing\033[0m");
+        System.out.println(shoppingCartService.getByUser(user1));
     }
 }
