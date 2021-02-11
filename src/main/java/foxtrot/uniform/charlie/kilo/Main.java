@@ -10,6 +10,7 @@ import foxtrot.uniform.charlie.kilo.service.AuthenticationService;
 import foxtrot.uniform.charlie.kilo.service.CinemaHallService;
 import foxtrot.uniform.charlie.kilo.service.MovieService;
 import foxtrot.uniform.charlie.kilo.service.MovieSessionService;
+import foxtrot.uniform.charlie.kilo.service.OrderService;
 import foxtrot.uniform.charlie.kilo.service.ShoppingCartService;
 import foxtrot.uniform.charlie.kilo.service.UserService;
 import java.time.LocalDate;
@@ -30,6 +31,8 @@ public class Main {
             = (AuthenticationService) injector.getInstance(AuthenticationService.class);
     private static final ShoppingCartService shoppingCartService
             = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
+    private static final OrderService orderService
+            = (OrderService) injector.getInstance(OrderService.class);
 
     public static void main(String[] args) {
         Movie movie1 = new Movie();
@@ -77,13 +80,19 @@ public class Main {
         User user2 = authenticationService.register("bob@gmail.com", "11111");
         System.out.println(authenticationService.login("alice@gmail.com", "12345"));
         shoppingCartService.addSession(movieSession1, user1);
+        shoppingCartService.addSession(movieSession2, user1);
         ShoppingCart byUser = shoppingCartService.getByUser(user1);
         System.out.println();
         System.out.println("\033[33mShopping Cart by user1\033[0m");
         System.out.println(byUser);
-        shoppingCartService.clear(byUser);
         System.out.println();
         System.out.println("\033[33mShopping Cart by user1 after clearing\033[0m");
         System.out.println(shoppingCartService.getByUser(user1));
+        System.out.println();
+        System.out.println("\033[33mComplete order\033[0m");
+        System.out.println(orderService.completeOrder(byUser));
+        System.out.println();
+        System.out.println("\033[33mOrder history\033[0m");
+        System.out.println(orderService.getOrdersHistory(user1));
     }
 }
