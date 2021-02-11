@@ -1,17 +1,21 @@
 package foxtrot.uniform.charlie.kilo.service.implementation;
 
 import foxtrot.uniform.charlie.kilo.dao.MovieSessionDao;
-import foxtrot.uniform.charlie.kilo.lib.Inject;
-import foxtrot.uniform.charlie.kilo.lib.Service;
 import foxtrot.uniform.charlie.kilo.model.MovieSession;
 import foxtrot.uniform.charlie.kilo.service.MovieSessionService;
 import java.time.LocalDate;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class MovieSessionServiceImpl implements MovieSessionService {
-    @Inject
-    private MovieSessionDao movieSessionDao;
+    private final MovieSessionDao movieSessionDao;
+
+    @Autowired
+    public MovieSessionServiceImpl(MovieSessionDao movieSessionDao) {
+        this.movieSessionDao = movieSessionDao;
+    }
 
     @Override
     public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {

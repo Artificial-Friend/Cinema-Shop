@@ -1,16 +1,20 @@
 package foxtrot.uniform.charlie.kilo.service.implementation;
 
 import foxtrot.uniform.charlie.kilo.dao.CinemaHallDao;
-import foxtrot.uniform.charlie.kilo.lib.Inject;
-import foxtrot.uniform.charlie.kilo.lib.Service;
 import foxtrot.uniform.charlie.kilo.model.CinemaHall;
 import foxtrot.uniform.charlie.kilo.service.CinemaHallService;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class CinemaHallServiceImpl implements CinemaHallService {
-    @Inject
-    private CinemaHallDao cinemaHallDao;
+    private final CinemaHallDao cinemaHallDao;
+
+    @Autowired
+    public CinemaHallServiceImpl(CinemaHallDao cinemaHallDao) {
+        this.cinemaHallDao = cinemaHallDao;
+    }
 
     @Override
     public CinemaHall add(CinemaHall cinemaHall) {

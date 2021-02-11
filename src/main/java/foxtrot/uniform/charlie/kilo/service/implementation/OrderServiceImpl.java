@@ -1,8 +1,6 @@
 package foxtrot.uniform.charlie.kilo.service.implementation;
 
 import foxtrot.uniform.charlie.kilo.dao.OrderDao;
-import foxtrot.uniform.charlie.kilo.lib.Inject;
-import foxtrot.uniform.charlie.kilo.lib.Service;
 import foxtrot.uniform.charlie.kilo.model.Order;
 import foxtrot.uniform.charlie.kilo.model.ShoppingCart;
 import foxtrot.uniform.charlie.kilo.model.User;
@@ -11,13 +9,19 @@ import foxtrot.uniform.charlie.kilo.service.ShoppingCartService;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-    @Inject
-    private OrderDao orderDao;
-    @Inject
-    private ShoppingCartService shoppingCartService;
+    private final OrderDao orderDao;
+    private final ShoppingCartService shoppingCartService;
+
+    @Autowired
+    public OrderServiceImpl(OrderDao orderDao, ShoppingCartService shoppingCartService) {
+        this.orderDao = orderDao;
+        this.shoppingCartService = shoppingCartService;
+    }
 
     @Override
     public Order completeOrder(ShoppingCart shoppingCart) {
