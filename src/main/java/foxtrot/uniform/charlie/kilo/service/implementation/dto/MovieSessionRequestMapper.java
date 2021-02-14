@@ -26,7 +26,6 @@ public class MovieSessionRequestMapper implements Mapper<MovieSessionRequestDto,
     @Override
     public MovieSessionRequestDto toDto(MovieSession movieSession) {
         MovieSessionRequestDto dto = new MovieSessionRequestDto();
-        dto.setId(movieSession.getId());
         dto.setShowTime(movieSession.getShowTime().toString());
         dto.setMovieId(movieSession.getMovie().getId());
         dto.setMovieTitle(movieSession.getMovie().getTitle());
@@ -43,7 +42,6 @@ public class MovieSessionRequestMapper implements Mapper<MovieSessionRequestDto,
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(movie);
         movieSession.setCinemaHall(cinemaHall);
-        movieSession.setId(dto.getId());
         movieSession.setShowTime(LocalDateTime.parse(dto.getShowTime(),
                 DateTimeFormatter.ISO_LOCAL_DATE_TIME));
         return movieSession;

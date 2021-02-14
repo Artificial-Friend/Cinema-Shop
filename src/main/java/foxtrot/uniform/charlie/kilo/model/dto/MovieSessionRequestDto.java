@@ -1,21 +1,12 @@
 package foxtrot.uniform.charlie.kilo.model.dto;
 
 public class MovieSessionRequestDto {
-    private Long id;
     private Long movieId;
     private String movieTitle;
     private String movieDescription;
     private Long cinemaHallId;
     private String cinemaHallDescription;
     private String showTime;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getMovieId() {
         return movieId;
@@ -67,8 +58,7 @@ public class MovieSessionRequestDto {
 
     @Override
     public String toString() {
-        return "MovieSessionResponseDto{" + "id=" + id
-                + ", movieId=" + movieId
+        return "MovieSessionResponseDto{" + ", movieId=" + movieId
                 + ", movieTitle='" + movieTitle + '\''
                 + ", movieDescription='" + movieDescription + '\''
                 + ", cinemaHallId=" + cinemaHallId
