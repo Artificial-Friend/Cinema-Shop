@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,13 +51,13 @@ public class MovieSessionController {
                 .map(responseMapper::toDto).collect(Collectors.toList());
     }
 
-    @PutMapping
-    public void put(@RequestBody MovieSessionRequestDto requestDto) {
-        movieSessionService.update(requestMapper.fromDto(requestDto));
+    @PutMapping("/{id}")
+    public void put(@PathVariable Long id) {
+        movieSessionService.update(movieSessionService.get(id));
     }
 
-    @DeleteMapping
-    public void remove(@RequestBody MovieSessionRequestDto requestDto) {
-        movieSessionService.delete(requestMapper.fromDto(requestDto));
+    @DeleteMapping("/{id}")
+    public void remove(@PathVariable Long id) {
+        movieSessionService.delete(movieSessionService.get(id));
     }
 }
