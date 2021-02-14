@@ -86,21 +86,21 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
     }
 
     @Override
-    public MovieSession delete(MovieSession movieSession) {
+    public void deleteById(Long id) {
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
+            MovieSession movieSession = session.load(MovieSession.class, id);
             session.delete(movieSession);
             transaction.commit();
-            return movieSession;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("ERROR: can't delete movieSession "
-                    + movieSession, e);
+            throw new DataProcessingException("ERROR: can't delete movieSession with id "
+                    + id, e);
         } finally {
             if (session != null) {
                 session.close();
