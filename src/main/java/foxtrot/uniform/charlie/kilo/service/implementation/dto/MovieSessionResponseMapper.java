@@ -8,7 +8,6 @@ import foxtrot.uniform.charlie.kilo.model.MovieSession;
 import foxtrot.uniform.charlie.kilo.model.dto.MovieSessionResponseDto;
 import foxtrot.uniform.charlie.kilo.service.Mapper;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
