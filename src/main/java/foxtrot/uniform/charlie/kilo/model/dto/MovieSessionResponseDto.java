@@ -1,7 +1,5 @@
 package foxtrot.uniform.charlie.kilo.model.dto;
 
-import java.time.LocalDate;
-
 public class MovieSessionResponseDto {
     private Long id;
     private Long movieId;
@@ -9,7 +7,7 @@ public class MovieSessionResponseDto {
     private String movieDescription;
     private Long cinemaHallId;
     private String cinemaHallDescription;
-    private LocalDate showTime;
+    private String showTime;
 
     public Long getId() {
         return id;
@@ -59,11 +57,11 @@ public class MovieSessionResponseDto {
         this.cinemaHallDescription = cinemaHallDescription;
     }
 
-    public LocalDate getShowTime() {
+    public String getShowTime() {
         return showTime;
     }
 
-    public void setShowTime(LocalDate showTime) {
+    public void setShowTime(String showTime) {
         this.showTime = showTime;
     }
 

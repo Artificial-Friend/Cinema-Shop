@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,12 +37,12 @@ public class MovieSessionController {
         this.responseMapper = responseMapper;
     }
 
-    @PostMapping("/")
+    @PostMapping
     public void add(@RequestBody MovieSessionRequestDto requestDto) {
         movieSessionService.add(requestMapper.fromDto(requestDto));
     }
 
-    @RequestMapping("/available")
+    @GetMapping("/available")
     public List<MovieSessionResponseDto> getAvailable(@RequestParam Long id, @RequestParam
                                                    @DateTimeFormat(pattern = "dd.MM.yyyy")
                                                            LocalDate date) {
@@ -49,12 +50,12 @@ public class MovieSessionController {
                 .map(responseMapper::toDto).collect(Collectors.toList());
     }
 
-    @PutMapping("/")
+    @PutMapping
     public void put(@RequestBody MovieSessionRequestDto requestDto) {
         movieSessionService.update(requestMapper.fromDto(requestDto));
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping
     public void remove(@RequestBody MovieSessionRequestDto requestDto) {
         movieSessionService.delete(requestMapper.fromDto(requestDto));
     }

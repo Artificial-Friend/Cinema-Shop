@@ -23,20 +23,20 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
     }
 
     @Override
-    public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {
+    public List<MovieSession> findAvailableSessions(Long movieSessionId, LocalDate date) {
         try (Session session = sessionFactory.openSession()) {
             Query<MovieSession> query = session.createQuery("SELECT ms FROM MovieSession ms "
                     + "LEFT JOIN FETCH ms.cinemaHall "
                     + "LEFT JOIN FETCH ms.movie "
-                    + "WHERE ms.movie.id = :movieId "
+                    + "WHERE ms.id = :movieSessionId "
                     + "AND TO_CHAR(ms.showTime, 'YYYY-MM-DD') = :date ",
                     MovieSession.class);
-            query.setParameter("movieId", movieId);
+            query.setParameter("movieSessionId", movieSessionId);
             query.setParameter("date", DateTimeFormatter.ISO_LOCAL_DATE.format(date));
             return query.getResultList();
         } catch (Exception e) {
             throw new DataProcessingException("ERROR: can't find available sessions with id "
-                    + movieId + " and date " + date, e);
+                    + movieSessionId + " and date " + date, e);
         }
     }
 

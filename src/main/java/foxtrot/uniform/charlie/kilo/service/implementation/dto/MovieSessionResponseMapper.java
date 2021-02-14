@@ -9,6 +9,7 @@ import foxtrot.uniform.charlie.kilo.model.dto.MovieSessionResponseDto;
 import foxtrot.uniform.charlie.kilo.service.Mapper;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +28,7 @@ public class MovieSessionResponseMapper implements Mapper<MovieSessionResponseDt
     public MovieSessionResponseDto toDto(MovieSession movieSession) {
         MovieSessionResponseDto dto = new MovieSessionResponseDto();
         dto.setId(movieSession.getId());
-        dto.setShowTime(movieSession.getShowTime().toLocalDate());
+        dto.setShowTime(movieSession.getShowTime().toString());
         dto.setMovieId(movieSession.getMovie().getId());
         dto.setMovieTitle(movieSession.getMovie().getTitle());
         dto.setMovieDescription(movieSession.getMovie().getDescription());
@@ -44,7 +45,8 @@ public class MovieSessionResponseMapper implements Mapper<MovieSessionResponseDt
         movieSession.setMovie(movie);
         movieSession.setCinemaHall(cinemaHall);
         movieSession.setId(dto.getId());
-        movieSession.setShowTime(LocalDateTime.of(dto.getShowTime(), LocalTime.now()));
+        movieSession.setShowTime(LocalDateTime.parse(dto.getShowTime(),
+                DateTimeFormatter.ISO_LOCAL_DATE_TIME));
         return movieSession;
     }
 }
