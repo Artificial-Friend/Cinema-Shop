@@ -12,7 +12,6 @@ public class MovieRequestMapper implements Mapper<MovieRequestDto, Movie> {
         MovieRequestDto dto = new MovieRequestDto();
         dto.setDescription(movie.getDescription());
         dto.setTitle(movie.getTitle());
-        dto.setId(movie.getId());
         return dto;
     }
 
@@ -20,7 +19,6 @@ public class MovieRequestMapper implements Mapper<MovieRequestDto, Movie> {
     public Movie fromDto(MovieRequestDto dto) {
         Movie movie = new Movie();
         movie.setDescription(dto.getDescription());
-        movie.setId(dto.getId());
         movie.setTitle(dto.getTitle());
         return movie;
     }

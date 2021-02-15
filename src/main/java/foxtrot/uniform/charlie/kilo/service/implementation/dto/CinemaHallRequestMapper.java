@@ -12,7 +12,6 @@ public class CinemaHallRequestMapper implements Mapper<CinemaHallRequestDto, Cin
         CinemaHallRequestDto dto = new CinemaHallRequestDto();
         dto.setCapacity(cinemaHall.getCapacity());
         dto.setDescription(cinemaHall.getDescription());
-        dto.setId(cinemaHall.getId());
         return dto;
     }
 
@@ -20,7 +19,6 @@ public class CinemaHallRequestMapper implements Mapper<CinemaHallRequestDto, Cin
     public CinemaHall fromDto(CinemaHallRequestDto dto) {
         CinemaHall cinemaHall = new CinemaHall();
         cinemaHall.setDescription(dto.getDescription());
-        cinemaHall.setId(dto.getId());
         cinemaHall.setCapacity(dto.getCapacity());
         return cinemaHall;
     }
