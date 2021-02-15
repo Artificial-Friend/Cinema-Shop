@@ -5,7 +5,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface MovieSessionDao {
-    List<MovieSession> findAvailableSessions(Long movieId, LocalDate date);
+    List<MovieSession> findAvailableSessions(Long movieSessionId, LocalDate date);
 
     MovieSession add(MovieSession session);
+
+    MovieSession update(MovieSession session);
+
+    void deleteById(Long id);
 }
