@@ -1,10 +1,10 @@
 package foxtrot.uniform.charlie.kilo.model.dto;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class ShoppingCartResponseDto {
     private Long id;
-    private Long[] ticketIds;
+    private List<Long> ticketIds;
     private Long userId;
 
     public Long getId() {
@@ -15,11 +15,11 @@ public class ShoppingCartResponseDto {
         this.id = id;
     }
 
-    public Long[] getTicketIds() {
+    public List<Long> getTicketIds() {
         return ticketIds;
     }
 
-    public void setTicketIds(Long[] ticketIds) {
+    public void setTicketIds(List<Long> ticketIds) {
         this.ticketIds = ticketIds;
     }
 
@@ -34,7 +34,7 @@ public class ShoppingCartResponseDto {
     @Override
     public String toString() {
         return "ShoppingCartResponseDto{" + "id=" + id
-                + ", ticketIds=" + Arrays.toString(ticketIds)
+                + ", ticketIds=" + ticketIds
                 + ", userId=" + userId + '}';
     }
 }

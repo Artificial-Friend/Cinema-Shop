@@ -35,13 +35,11 @@ public class ShoppingCartController {
     public void addMovieSessionToShoppingCart(@RequestParam Long userId,
                                               @RequestParam Long movieSessionId) {
         shoppingCartService.addSession(movieSessionService.get(movieSessionId),
-                userService.get(userId).orElseThrow(() ->
-                        new RuntimeException("Shopping cart can't find user with id " + userId)));
+                userService.get(userId));
     }
 
     @GetMapping("/by-user")
     public ShoppingCartResponseDto get(@RequestParam Long userId) {
-        return responseMapper.toDto(shoppingCartService.getByUser(userService.get(userId)
-                .orElseThrow(() -> new RuntimeException("Can't get user with id " + userId))));
+        return responseMapper.toDto(shoppingCartService.getByUser(userService.get(userId)));
     }
 }

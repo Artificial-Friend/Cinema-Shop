@@ -1,6 +1,5 @@
 package foxtrot.uniform.charlie.kilo.controller;
 
-import foxtrot.uniform.charlie.kilo.model.ShoppingCart;
 import foxtrot.uniform.charlie.kilo.model.dto.OrderResponseDto;
 import foxtrot.uniform.charlie.kilo.service.OrderService;
 import foxtrot.uniform.charlie.kilo.service.ShoppingCartService;
@@ -35,15 +34,12 @@ public class OrderController {
 
     @GetMapping
     public List<OrderResponseDto> getHistory(@RequestParam Long userId) {
-        return orderService.getOrdersHistory(userService.get(userId).orElseThrow(() ->
-                new RuntimeException("Can't find user with id " + userId))).stream()
+        return orderService.getOrdersHistory(userService.get(userId)).stream()
                 .map(responseMapper::toDto).collect(Collectors.toList());
     }
 
     @PostMapping("/complete")
     public void completeOrder(@RequestParam Long userId) {
-        ShoppingCart shoppingCartByUser = shoppingCartService.getByUser(userService.get(userId)
-                .orElseThrow(() -> new RuntimeException("Can't find user with id " + userId)));
-        orderService.completeOrder(shoppingCartByUser);
+        orderService.completeOrder(shoppingCartService.getByUser(userService.get(userId)));
     }
 }

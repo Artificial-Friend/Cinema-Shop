@@ -3,6 +3,7 @@ package foxtrot.uniform.charlie.kilo.service.implementation.dto;
 import foxtrot.uniform.charlie.kilo.model.Order;
 import foxtrot.uniform.charlie.kilo.model.Ticket;
 import foxtrot.uniform.charlie.kilo.model.dto.OrderResponseDto;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,7 +15,7 @@ public class OrderResponseMapper implements MapperToDto<OrderResponseDto, Order>
         dto.setDate(order.getOrderDate().toString());
         dto.setTicketIds(order.getTickets().stream()
                 .map(Ticket::getId)
-                .toArray(Long[]::new));
+                .collect(Collectors.toList()));
         dto.setUserId(order.getUser().getId());
         return dto;
     }
