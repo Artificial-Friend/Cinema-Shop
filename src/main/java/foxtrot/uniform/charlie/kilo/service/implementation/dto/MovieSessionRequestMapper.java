@@ -6,14 +6,13 @@ import foxtrot.uniform.charlie.kilo.model.CinemaHall;
 import foxtrot.uniform.charlie.kilo.model.Movie;
 import foxtrot.uniform.charlie.kilo.model.MovieSession;
 import foxtrot.uniform.charlie.kilo.model.dto.MovieSessionRequestDto;
-import foxtrot.uniform.charlie.kilo.service.Mapper;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MovieSessionRequestMapper implements Mapper<MovieSessionRequestDto, MovieSession> {
+public class MovieSessionRequestMapper implements MapperFromDto<MovieSessionRequestDto, MovieSession> {
     private final MovieDao movieDao;
     private final CinemaHallDao cinemaHallDao;
 
@@ -21,18 +20,6 @@ public class MovieSessionRequestMapper implements Mapper<MovieSessionRequestDto,
     public MovieSessionRequestMapper(MovieDao movieDao, CinemaHallDao cinemaHallDao) {
         this.movieDao = movieDao;
         this.cinemaHallDao = cinemaHallDao;
-    }
-
-    @Override
-    public MovieSessionRequestDto toDto(MovieSession movieSession) {
-        MovieSessionRequestDto dto = new MovieSessionRequestDto();
-        dto.setShowTime(movieSession.getShowTime().toString());
-        dto.setMovieId(movieSession.getMovie().getId());
-        dto.setMovieTitle(movieSession.getMovie().getTitle());
-        dto.setMovieDescription(movieSession.getMovie().getDescription());
-        dto.setCinemaHallId(movieSession.getCinemaHall().getId());
-        dto.setCinemaHallDescription(movieSession.getCinemaHall().getDescription());
-        return dto;
     }
 
     @Override
