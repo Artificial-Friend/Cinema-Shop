@@ -5,7 +5,8 @@ import foxtrot.uniform.charlie.kilo.model.dto.CinemaHallResponseDto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CinemaHallResponseMapperToDto implements MapperToDto<CinemaHallResponseDto, CinemaHall> {
+public class CinemaHallResponseMapperToDto implements
+        MapperToDto<CinemaHallResponseDto, CinemaHall> {
     @Override
     public CinemaHallResponseDto toDto(CinemaHall cinemaHall) {
         CinemaHallResponseDto dto = new CinemaHallResponseDto();
