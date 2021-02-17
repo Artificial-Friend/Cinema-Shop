@@ -7,7 +7,6 @@ import foxtrot.uniform.charlie.kilo.service.OrderService;
 import foxtrot.uniform.charlie.kilo.service.ShoppingCartService;
 import foxtrot.uniform.charlie.kilo.service.UserService;
 import foxtrot.uniform.charlie.kilo.service.implementation.dto.MapperToDto;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.OrderResponseMapperToDto;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -30,7 +29,7 @@ public class OrderController {
     @Autowired
     public OrderController(OrderService orderService, UserService userService,
                            ShoppingCartService shoppingCartService,
-                           OrderResponseMapperToDto responseMapper) {
+                           MapperToDto<OrderResponseDto, Order> responseMapper) {
         this.orderService = orderService;
         this.userService = userService;
         this.shoppingCartService = shoppingCartService;

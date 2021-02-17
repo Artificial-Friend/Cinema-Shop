@@ -6,7 +6,6 @@ import foxtrot.uniform.charlie.kilo.service.MovieSessionService;
 import foxtrot.uniform.charlie.kilo.service.ShoppingCartService;
 import foxtrot.uniform.charlie.kilo.service.UserService;
 import foxtrot.uniform.charlie.kilo.service.implementation.dto.MapperToDto;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.ShoppingCartResponseMapperToDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +25,8 @@ public class ShoppingCartController {
     public ShoppingCartController(MovieSessionService movieSessionService,
                                   ShoppingCartService shoppingCartService,
                                   UserService userService,
-                                  ShoppingCartResponseMapperToDto responseMapper) {
+                                  MapperToDto<ShoppingCartResponseDto,
+                                          ShoppingCart> responseMapper) {
         this.movieSessionService = movieSessionService;
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
