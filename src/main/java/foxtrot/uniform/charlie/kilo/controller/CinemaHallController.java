@@ -4,9 +4,10 @@ import foxtrot.uniform.charlie.kilo.model.CinemaHall;
 import foxtrot.uniform.charlie.kilo.model.dto.CinemaHallRequestDto;
 import foxtrot.uniform.charlie.kilo.model.dto.CinemaHallResponseDto;
 import foxtrot.uniform.charlie.kilo.service.CinemaHallService;
-import foxtrot.uniform.charlie.kilo.service.Mapper;
 import foxtrot.uniform.charlie.kilo.service.implementation.dto.CinemaHallRequestMapper;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.CinemaHallResponseMapper;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.CinemaHallResponseMapperToDto;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.MapperFromDto;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.MapperToDto;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,27 +21,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/cinema-halls")
 public class CinemaHallController {
     private final CinemaHallService cinemaHallService;
-    private final Mapper<CinemaHallResponseDto, CinemaHall> responseMapper;
-    private final Mapper<CinemaHallRequestDto, CinemaHall> requestMapper;
+    private final MapperToDto<CinemaHallResponseDto, CinemaHall> cinemaHallMapperToDto;
+    private final MapperFromDto<CinemaHallRequestDto, CinemaHall> cinemaHallMapperFromDto;
 
     @Autowired
     public CinemaHallController(CinemaHallService cinemaHallService,
-                                CinemaHallResponseMapper responseMapper,
-                                CinemaHallRequestMapper requestMapper) {
+                                CinemaHallResponseMapperToDto responseMapper,
+                                CinemaHallRequestMapper cinemaHallMapperFromDto) {
         this.cinemaHallService = cinemaHallService;
-        this.requestMapper = requestMapper;
-        this.responseMapper = responseMapper;
+        this.cinemaHallMapperFromDto = cinemaHallMapperFromDto;
+        this.cinemaHallMapperToDto = responseMapper;
     }
 
     @PostMapping
     public void add(@RequestBody CinemaHallRequestDto requestDto) {
-        cinemaHallService.add(requestMapper.fromDto(requestDto));
+        cinemaHallService.add(cinemaHallMapperFromDto.fromDto(requestDto));
     }
 
     @GetMapping
     public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll().stream()
-                .map(responseMapper::toDto)
+                .map(cinemaHallMapperToDto::toDto)
                 .collect(Collectors.toList());
     }
 }

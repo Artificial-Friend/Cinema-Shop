@@ -48,7 +48,17 @@ public class UserDaoImpl implements UserDao {
                     User.class).setParameter("email", email).uniqueResult();
             return Optional.ofNullable(singleResult);
         } catch (Exception e) {
-            throw new DataProcessingException("ERROR: can't get by login " + email, e);
+            throw new DataProcessingException("ERROR: can't get user by login " + email, e);
+        }
+    }
+
+    @Override
+    public Optional<User> get(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("FROM User WHERE id = :id",
+                    User.class).setParameter("id", id).uniqueResultOptional();
+        } catch (Exception e) {
+            throw new DataProcessingException("ERROR: can't get user by id " + id, e);
         }
     }
 }

@@ -26,4 +26,10 @@ public class UserServiceImpl implements UserService {
     public Optional<User> findByEmail(String email) {
         return userDao.getByLogin(email);
     }
+
+    @Override
+    public User get(Long id) {
+        return userDao.get(id).orElseThrow(() ->
+                new RuntimeException("Can't get user with id " + id));
+    }
 }
