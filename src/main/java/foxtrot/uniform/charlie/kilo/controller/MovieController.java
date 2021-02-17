@@ -10,6 +10,7 @@ import foxtrot.uniform.charlie.kilo.service.implementation.dto.MovieRequestMappe
 import foxtrot.uniform.charlie.kilo.service.implementation.dto.MovieResponseMapperToDto;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +35,7 @@ public class MovieController {
     }
 
     @PostMapping
-    public void add(@RequestBody MovieRequestDto requestDto) {
+    public void add(@RequestBody @Valid MovieRequestDto requestDto) {
         movieService.add(movieMapperFromDto.fromDto(requestDto));
     }
 

@@ -1,11 +1,12 @@
 package foxtrot.uniform.charlie.kilo.model.dto;
 
+import javax.validation.constraints.NotNull;
+
 public class MovieSessionRequestDto {
+    @NotNull
     private Long movieId;
-    private String movieTitle;
-    private String movieDescription;
+    @NotNull
     private Long cinemaHallId;
-    private String cinemaHallDescription;
     private String showTime;
 
     public Long getMovieId() {
@@ -16,36 +17,12 @@ public class MovieSessionRequestDto {
         this.movieId = movieId;
     }
 
-    public String getMovieTitle() {
-        return movieTitle;
-    }
-
-    public void setMovieTitle(String movieTitle) {
-        this.movieTitle = movieTitle;
-    }
-
-    public String getMovieDescription() {
-        return movieDescription;
-    }
-
-    public void setMovieDescription(String movieDescription) {
-        this.movieDescription = movieDescription;
-    }
-
     public Long getCinemaHallId() {
         return cinemaHallId;
     }
 
     public void setCinemaHallId(Long cinemaHallId) {
         this.cinemaHallId = cinemaHallId;
-    }
-
-    public String getCinemaHallDescription() {
-        return cinemaHallDescription;
-    }
-
-    public void setCinemaHallDescription(String cinemaHallDescription) {
-        this.cinemaHallDescription = cinemaHallDescription;
     }
 
     public String getShowTime() {
@@ -59,10 +36,7 @@ public class MovieSessionRequestDto {
     @Override
     public String toString() {
         return "MovieSessionResponseDto{" + ", movieId=" + movieId
-                + ", movieTitle='" + movieTitle + '\''
-                + ", movieDescription='" + movieDescription + '\''
                 + ", cinemaHallId=" + cinemaHallId
-                + ", cinemaHallDescription='" + cinemaHallDescription + '\''
                 + ", showTime=" + showTime + '}';
     }
 }

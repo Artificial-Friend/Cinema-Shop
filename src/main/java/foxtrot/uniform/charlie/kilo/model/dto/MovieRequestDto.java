@@ -1,6 +1,9 @@
 package foxtrot.uniform.charlie.kilo.model.dto;
 
+import javax.validation.constraints.NotNull;
+
 public class MovieRequestDto {
+    @NotNull
     private String title;
     private String description;
 

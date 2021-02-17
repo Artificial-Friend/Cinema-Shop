@@ -15,7 +15,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder authBuilder) throws Exception {
         authBuilder.inMemoryAuthentication()
                 .passwordEncoder(getEncoder())
-                .withUser("admin").password(getEncoder().encode("123"));
+                .withUser("admin").password(getEncoder().encode("admin")).roles("ADMIN");
     }
 
     @Override
@@ -25,7 +25,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin().permitAll()
                 .and()
-                .httpBasic();
+                .httpBasic()
+                .and()
+                .csrf().disable();
     }
 
     @Bean
