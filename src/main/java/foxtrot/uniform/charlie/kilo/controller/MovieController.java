@@ -1,13 +1,13 @@
 package foxtrot.uniform.charlie.kilo.controller;
 
 import foxtrot.uniform.charlie.kilo.model.Movie;
-import foxtrot.uniform.charlie.kilo.model.dto.MovieRequestDto;
-import foxtrot.uniform.charlie.kilo.model.dto.MovieResponseDto;
+import foxtrot.uniform.charlie.kilo.model.dto.request.MovieRequestDto;
+import foxtrot.uniform.charlie.kilo.model.dto.response.MovieResponseDto;
 import foxtrot.uniform.charlie.kilo.service.MovieService;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.MapperFromDto;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.MapperToDto;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.MovieRequestMapper;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.MovieResponseMapperToDto;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.MapperFromDto;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.MapperToDto;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.request.MovieRequestMapper;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.response.MovieResponseMapperToDto;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Valid;

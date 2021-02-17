@@ -1,7 +1,8 @@
-package foxtrot.uniform.charlie.kilo.service.implementation.dto;
+package foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.response;
 
 import foxtrot.uniform.charlie.kilo.model.User;
-import foxtrot.uniform.charlie.kilo.model.dto.UserResponseDto;
+import foxtrot.uniform.charlie.kilo.model.dto.response.UserResponseDto;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.MapperToDto;
 import org.springframework.stereotype.Component;
 
 @Component

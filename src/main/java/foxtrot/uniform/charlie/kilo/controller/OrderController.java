@@ -2,11 +2,11 @@ package foxtrot.uniform.charlie.kilo.controller;
 
 import foxtrot.uniform.charlie.kilo.model.Order;
 import foxtrot.uniform.charlie.kilo.model.User;
-import foxtrot.uniform.charlie.kilo.model.dto.OrderResponseDto;
+import foxtrot.uniform.charlie.kilo.model.dto.response.OrderResponseDto;
 import foxtrot.uniform.charlie.kilo.service.OrderService;
 import foxtrot.uniform.charlie.kilo.service.ShoppingCartService;
 import foxtrot.uniform.charlie.kilo.service.UserService;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.MapperToDto;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.MapperToDto;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

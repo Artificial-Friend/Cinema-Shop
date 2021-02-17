@@ -1,11 +1,11 @@
 package foxtrot.uniform.charlie.kilo.controller;
 
 import foxtrot.uniform.charlie.kilo.model.ShoppingCart;
-import foxtrot.uniform.charlie.kilo.model.dto.ShoppingCartResponseDto;
+import foxtrot.uniform.charlie.kilo.model.dto.response.ShoppingCartResponseDto;
 import foxtrot.uniform.charlie.kilo.service.MovieSessionService;
 import foxtrot.uniform.charlie.kilo.service.ShoppingCartService;
 import foxtrot.uniform.charlie.kilo.service.UserService;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.MapperToDto;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.MapperToDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

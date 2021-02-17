@@ -1,4 +1,4 @@
-package foxtrot.uniform.charlie.kilo.model.dto;
+package foxtrot.uniform.charlie.kilo.model.dto.request;
 
 public class CinemaHallRequestDto {
     private int capacity;
