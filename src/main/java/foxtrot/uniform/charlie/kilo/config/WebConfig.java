@@ -6,7 +6,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"foxtrot.uniform.charlie.kilo.controller",
-        "foxtrot.uniform.charlie.kilo.exception"})
+@ComponentScan(basePackages = "foxtrot.uniform.charlie.kilo.controller")
 public class WebConfig {
 }
