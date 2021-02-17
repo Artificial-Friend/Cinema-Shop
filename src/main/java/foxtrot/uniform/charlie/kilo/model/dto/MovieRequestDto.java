@@ -1,4 +1,4 @@
-package foxtrot.uniform.charlie.kilo.model.dto.request;
+package foxtrot.uniform.charlie.kilo.model.dto;
 
 import javax.validation.constraints.NotNull;
 

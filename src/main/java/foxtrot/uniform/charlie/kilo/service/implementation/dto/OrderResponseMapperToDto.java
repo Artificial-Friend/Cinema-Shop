@@ -1,9 +1,8 @@
-package foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.response;
+package foxtrot.uniform.charlie.kilo.service.implementation.dto;
 
 import foxtrot.uniform.charlie.kilo.model.Order;
 import foxtrot.uniform.charlie.kilo.model.Ticket;
-import foxtrot.uniform.charlie.kilo.model.dto.response.OrderResponseDto;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.MapperToDto;
+import foxtrot.uniform.charlie.kilo.model.dto.OrderResponseDto;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 

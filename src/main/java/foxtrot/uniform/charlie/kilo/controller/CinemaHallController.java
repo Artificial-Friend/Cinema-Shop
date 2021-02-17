@@ -1,13 +1,13 @@
 package foxtrot.uniform.charlie.kilo.controller;
 
 import foxtrot.uniform.charlie.kilo.model.CinemaHall;
-import foxtrot.uniform.charlie.kilo.model.dto.request.CinemaHallRequestDto;
-import foxtrot.uniform.charlie.kilo.model.dto.response.CinemaHallResponseDto;
+import foxtrot.uniform.charlie.kilo.model.dto.CinemaHallRequestDto;
+import foxtrot.uniform.charlie.kilo.model.dto.CinemaHallResponseDto;
 import foxtrot.uniform.charlie.kilo.service.CinemaHallService;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.MapperFromDto;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.MapperToDto;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.request.CinemaHallRequestMapper;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.response.CinemaHallResponseMapperToDto;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.CinemaHallRequestMapper;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.CinemaHallResponseMapperToDto;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.MapperFromDto;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.MapperToDto;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;

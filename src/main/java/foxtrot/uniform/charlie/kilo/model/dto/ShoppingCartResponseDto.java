@@ -1,4 +1,4 @@
-package foxtrot.uniform.charlie.kilo.model.dto.response;
+package foxtrot.uniform.charlie.kilo.model.dto;
 
 import java.util.List;
 
