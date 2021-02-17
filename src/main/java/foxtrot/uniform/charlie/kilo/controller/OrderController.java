@@ -1,11 +1,11 @@
 package foxtrot.uniform.charlie.kilo.controller;
 
-import foxtrot.uniform.charlie.kilo.model.User;
 import foxtrot.uniform.charlie.kilo.model.dto.OrderResponseDto;
 import foxtrot.uniform.charlie.kilo.service.OrderService;
 import foxtrot.uniform.charlie.kilo.service.ShoppingCartService;
 import foxtrot.uniform.charlie.kilo.service.UserService;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.OrderResponseMapper;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.MapperToDto;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.OrderResponseMapperToDto;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,12 +24,12 @@ public class OrderController {
     private final OrderService orderService;
     private final UserService userService;
     private final ShoppingCartService shoppingCartService;
-    private final OrderResponseMapper responseMapper;
+    private final MapperToDto<OrderResponseDto, Order> responseMapper;
 
     @Autowired
     public OrderController(OrderService orderService, UserService userService,
                            ShoppingCartService shoppingCartService,
-                           OrderResponseMapper responseMapper) {
+                           OrderResponseMapperToDto responseMapper) {
         this.orderService = orderService;
         this.userService = userService;
         this.shoppingCartService = shoppingCartService;
