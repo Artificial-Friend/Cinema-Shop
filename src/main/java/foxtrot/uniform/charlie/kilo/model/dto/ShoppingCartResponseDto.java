@@ -25,7 +25,6 @@ public class ShoppingCartResponseDto {
     @Override
     public String toString() {
         return "ShoppingCartResponseDto{" + "id=" + id
-                + ", ticketIds=" + ticketIds
-                + ", userId=" + '}';
+                + ", ticketIds=" + ticketIds + '}';
     }
 }

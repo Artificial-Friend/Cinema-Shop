@@ -4,7 +4,6 @@ import foxtrot.uniform.charlie.kilo.model.User;
 import foxtrot.uniform.charlie.kilo.model.dto.UserResponseDto;
 import foxtrot.uniform.charlie.kilo.service.UserService;
 import foxtrot.uniform.charlie.kilo.service.implementation.dto.MapperToDto;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.UserResponseMapperToDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +17,8 @@ public class UserController {
     private final MapperToDto<UserResponseDto, User> userResponseMapper;
 
     @Autowired
-    public UserController(UserService userService, UserResponseMapperToDto userResponseMapper) {
+    public UserController(UserService userService,
+                          MapperToDto<UserResponseDto, User> userResponseMapper) {
         this.userService = userService;
         this.userResponseMapper = userResponseMapper;
     }
