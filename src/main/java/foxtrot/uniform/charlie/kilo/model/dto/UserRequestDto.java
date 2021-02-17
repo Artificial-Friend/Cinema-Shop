@@ -1,7 +1,11 @@
 package foxtrot.uniform.charlie.kilo.model.dto;
 
+import org.springframework.lang.NonNull;
+
 public class UserRequestDto {
+    @NonNu
     private String email;
+
     private String password;
 
     public String getEmail() {
