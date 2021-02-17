@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 @Component
-public class OrderResponseMapper implements MapperToDto<OrderResponseDto, Order> {
+public class OrderResponseMapperToDto implements MapperToDto<OrderResponseDto, Order> {
     @Override
     public OrderResponseDto toDto(Order order) {
         OrderResponseDto dto = new OrderResponseDto();
