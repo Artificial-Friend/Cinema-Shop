@@ -1,11 +1,11 @@
 package foxtrot.uniform.charlie.kilo.model.dto;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 
 public class MovieSessionRequestDto {
-    @NotNull
+    @PositiveOrZero
     private Long movieId;
-    @NotNull
+    @PositiveOrZero
     private Long cinemaHallId;
     private String showTime;
 

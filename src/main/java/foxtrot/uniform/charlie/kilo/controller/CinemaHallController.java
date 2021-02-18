@@ -10,6 +10,7 @@ import foxtrot.uniform.charlie.kilo.service.implementation.dto.MapperFromDto;
 import foxtrot.uniform.charlie.kilo.service.implementation.dto.MapperToDto;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +35,7 @@ public class CinemaHallController {
     }
 
     @PostMapping
-    public void add(@RequestBody CinemaHallRequestDto requestDto) {
+    public void add(@RequestBody @Valid CinemaHallRequestDto requestDto) {
         cinemaHallService.add(cinemaHallMapperFromDto.fromDto(requestDto));
     }
 
