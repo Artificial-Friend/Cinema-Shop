@@ -1,15 +1,16 @@
 package foxtrot.uniform.charlie.kilo.controller;
 
 import foxtrot.uniform.charlie.kilo.model.CinemaHall;
-import foxtrot.uniform.charlie.kilo.model.dto.CinemaHallRequestDto;
-import foxtrot.uniform.charlie.kilo.model.dto.CinemaHallResponseDto;
+import foxtrot.uniform.charlie.kilo.model.dto.request.CinemaHallRequestDto;
+import foxtrot.uniform.charlie.kilo.model.dto.response.CinemaHallResponseDto;
 import foxtrot.uniform.charlie.kilo.service.CinemaHallService;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.CinemaHallRequestMapper;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.CinemaHallResponseMapperToDto;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.MapperFromDto;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.MapperToDto;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.MapperFromDto;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.MapperToDto;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.request.CinemaHallRequestMapper;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.response.CinemaHallResponseMapperToDto;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +35,7 @@ public class CinemaHallController {
     }
 
     @PostMapping
-    public void add(@RequestBody CinemaHallRequestDto requestDto) {
+    public void add(@RequestBody @Valid CinemaHallRequestDto requestDto) {
         cinemaHallService.add(cinemaHallMapperFromDto.fromDto(requestDto));
     }
 

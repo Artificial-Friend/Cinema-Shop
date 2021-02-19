@@ -1,6 +1,5 @@
 package foxtrot.uniform.charlie.kilo.model;
 
-import java.util.Arrays;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,12 +13,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
-    @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
-    private byte[] salt;
 
     public Long getId() {
         return id;
@@ -45,19 +41,10 @@ public class User {
         this.password = password;
     }
 
-    public byte[] getSalt() {
-        return salt;
-    }
-
-    public void setSalt(byte[] salt) {
-        this.salt = salt;
-    }
-
     @Override
     public String toString() {
         return "User{" + "id=" + id
                 + ", email='" + email + '\''
-                + ", password='" + password + '\''
-                + ", salt=" + Arrays.toString(salt) + '}';
+                + ", password='" + password + '\'' + '}';
     }
 }

@@ -1,6 +1,9 @@
-package foxtrot.uniform.charlie.kilo.model.dto;
+package foxtrot.uniform.charlie.kilo.model.dto.request;
+
+import javax.validation.constraints.Positive;
 
 public class CinemaHallRequestDto {
+    @Positive
     private int capacity;
     private String description;
 

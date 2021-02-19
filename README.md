@@ -1,1 +1,6 @@
-##web-project using Hibernate framework
+#Cinema shop
+###Implemented:
+*   ####Frameworks:
+    -   Hibernate
+    -   Spring (MVC, Web, Security)
+-   PostgreSQL database

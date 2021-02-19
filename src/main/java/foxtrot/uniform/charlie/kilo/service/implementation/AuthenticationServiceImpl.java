@@ -5,12 +5,10 @@ import foxtrot.uniform.charlie.kilo.model.User;
 import foxtrot.uniform.charlie.kilo.service.AuthenticationService;
 import foxtrot.uniform.charlie.kilo.service.ShoppingCartService;
 import foxtrot.uniform.charlie.kilo.service.UserService;
-import foxtrot.uniform.charlie.kilo.util.HashUtil;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@SuppressWarnings("unused")
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserService userService;
@@ -24,23 +22,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public User login(String email, String password) throws AuthenticationException {
-        Optional<User> userByLogin = userService.findByEmail(email);
-        if (userByLogin.isPresent() && userByLogin.get().getPassword().equals(HashUtil.hashPassword(
-                password, userByLogin.get().getSalt()))) {
-            return userByLogin.get();
-        }
-        throw new AuthenticationException("Unable to login: user not found or password is invalid");
-    }
-
-    @Override
     public User register(String email, String password) {
         Optional<User> userByEmail = userService.findByEmail(email);
         if (userByEmail.isEmpty()) {
             User user = new User();
             user.setEmail(email);
-            user.setSalt(HashUtil.getSalt());
-            user.setPassword(HashUtil.hashPassword(password, user.getSalt()));
+            user.setPassword(password);
             userService.add(user);
             shoppingCartService.registerNewShoppingCart(user);
             return user;

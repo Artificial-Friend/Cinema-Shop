@@ -1,4 +1,4 @@
-package foxtrot.uniform.charlie.kilo.model.dto;
+package foxtrot.uniform.charlie.kilo.model.dto.response;
 
 public class MovieSessionResponseDto {
     private Long id;
