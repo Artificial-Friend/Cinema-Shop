@@ -1,6 +1,6 @@
 package foxtrot.uniform.charlie.kilo.controller;
 
-import foxtrot.uniform.charlie.kilo.model.dto.UserRegistrationDto;
+import foxtrot.uniform.charlie.kilo.model.dto.request.UserRegistrationDto;
 import foxtrot.uniform.charlie.kilo.service.AuthenticationService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

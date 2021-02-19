@@ -1,11 +1,12 @@
-package foxtrot.uniform.charlie.kilo.service.implementation.dto;
+package foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.request;
 
 import foxtrot.uniform.charlie.kilo.dao.CinemaHallDao;
 import foxtrot.uniform.charlie.kilo.dao.MovieDao;
 import foxtrot.uniform.charlie.kilo.model.CinemaHall;
 import foxtrot.uniform.charlie.kilo.model.Movie;
 import foxtrot.uniform.charlie.kilo.model.MovieSession;
-import foxtrot.uniform.charlie.kilo.model.dto.MovieSessionRequestDto;
+import foxtrot.uniform.charlie.kilo.model.dto.request.MovieSessionRequestDto;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.MapperFromDto;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;

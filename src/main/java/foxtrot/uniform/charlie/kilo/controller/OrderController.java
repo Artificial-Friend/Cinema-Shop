@@ -2,11 +2,11 @@ package foxtrot.uniform.charlie.kilo.controller;
 
 import foxtrot.uniform.charlie.kilo.model.Order;
 import foxtrot.uniform.charlie.kilo.model.User;
-import foxtrot.uniform.charlie.kilo.model.dto.OrderResponseDto;
+import foxtrot.uniform.charlie.kilo.model.dto.response.OrderResponseDto;
 import foxtrot.uniform.charlie.kilo.service.OrderService;
 import foxtrot.uniform.charlie.kilo.service.ShoppingCartService;
 import foxtrot.uniform.charlie.kilo.service.UserService;
-import foxtrot.uniform.charlie.kilo.service.implementation.dto.MapperToDto;
+import foxtrot.uniform.charlie.kilo.service.implementation.dto.mappers.MapperToDto;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -41,8 +41,7 @@ public class OrderController {
         UserDetails principal = (UserDetails) authentication.getPrincipal();
         String username = principal.getUsername();
         Optional<User> user = userService.findByEmail(username);
-        return orderService.getOrdersHistory(user.orElseThrow(() -> new RuntimeException("Unable"
-                + " to find order history for user " + username))).stream()
+        return orderService.getOrdersHistory(user.get()).stream()
                 .map(responseMapper::toDto)
                 .collect(Collectors.toList());
     }
@@ -52,7 +51,6 @@ public class OrderController {
         UserDetails principal = (UserDetails) authentication.getPrincipal();
         String username = principal.getUsername();
         Optional<User> user = userService.findByEmail(username);
-        orderService.completeOrder(shoppingCartService.getByUser(user.orElseThrow(() ->
-                (new RuntimeException("Unable to complete order for user " + username)))));
+        orderService.completeOrder(shoppingCartService.getByUser(user.get()));
     }
 }

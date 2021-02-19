@@ -1,4 +1,4 @@
-package foxtrot.uniform.charlie.kilo.model.dto;
+package foxtrot.uniform.charlie.kilo.model.dto.request;
 
 import foxtrot.uniform.charlie.kilo.annotations.ValidateEmail;
 import foxtrot.uniform.charlie.kilo.annotations.ValidatePassword;
