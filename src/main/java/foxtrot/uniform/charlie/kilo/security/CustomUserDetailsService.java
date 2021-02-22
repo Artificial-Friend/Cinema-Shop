@@ -2,7 +2,6 @@ package foxtrot.uniform.charlie.kilo.security;
 
 import foxtrot.uniform.charlie.kilo.model.User;
 import foxtrot.uniform.charlie.kilo.service.UserService;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
