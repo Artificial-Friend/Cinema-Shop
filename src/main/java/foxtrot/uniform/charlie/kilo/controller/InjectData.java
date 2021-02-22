@@ -4,8 +4,8 @@ import foxtrot.uniform.charlie.kilo.model.Role;
 import foxtrot.uniform.charlie.kilo.model.User;
 import foxtrot.uniform.charlie.kilo.service.RoleService;
 import foxtrot.uniform.charlie.kilo.service.UserService;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,7 +29,7 @@ public class InjectData {
         Role userRole = new Role();
         userRole.setName("USER");
         roleService.add(userRole);
-        List<Role> roles = new ArrayList<>();
+        Set<Role> roles = new HashSet<>();
 
         User userUser = new User();
         userUser.setPassword("123456");

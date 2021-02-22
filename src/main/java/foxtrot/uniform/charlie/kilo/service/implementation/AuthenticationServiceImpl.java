@@ -6,8 +6,8 @@ import foxtrot.uniform.charlie.kilo.service.AuthenticationService;
 import foxtrot.uniform.charlie.kilo.service.RoleService;
 import foxtrot.uniform.charlie.kilo.service.ShoppingCartService;
 import foxtrot.uniform.charlie.kilo.service.UserService;
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +33,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             User user = new User();
             user.setEmail(email);
             user.setPassword(password);
-            user.setRoles(List.of(roleService.getRoleByName("USER")));
+            user.setRoles(Set.of(roleService.getRoleByName("USER")));
             userService.add(user);
             shoppingCartService.registerNewShoppingCart(user);
             return user;
