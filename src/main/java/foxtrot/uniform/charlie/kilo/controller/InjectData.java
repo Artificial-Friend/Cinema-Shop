@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 
-@Controller
+@Component
 public class InjectData {
     private final UserService userService;
     private final RoleService roleService;
@@ -36,13 +36,13 @@ public class InjectData {
         userUser.setEmail("user@gmail.com");
         roles.add(userRole);
         userUser.setRoles(roles);
-        User user = userService.add(userUser);
+        userService.add(userUser);
 
         User adminUser = new User();
         adminUser.setEmail("admin");
         adminUser.setPassword("admin");
         roles.add(adminRole);
         adminUser.setRoles(roles);
-        User admin = userService.add(adminUser);
+        userService.add(adminUser);
     }
 }

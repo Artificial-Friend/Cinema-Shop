@@ -1,13 +1,11 @@
 package foxtrot.uniform.charlie.kilo.service.implementation;
 
 import foxtrot.uniform.charlie.kilo.exception.AuthenticationException;
-import foxtrot.uniform.charlie.kilo.model.Role;
 import foxtrot.uniform.charlie.kilo.model.User;
 import foxtrot.uniform.charlie.kilo.service.AuthenticationService;
 import foxtrot.uniform.charlie.kilo.service.RoleService;
 import foxtrot.uniform.charlie.kilo.service.ShoppingCartService;
 import foxtrot.uniform.charlie.kilo.service.UserService;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +33,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             User user = new User();
             user.setEmail(email);
             user.setPassword(password);
-            List<Role> roles = new ArrayList<>();
-            roles.add(roleService.getRoleByName("USER"));
-            user.setRoles(roles);
+            user.setRoles(List.of(roleService.getRoleByName("USER")));
             userService.add(user);
             shoppingCartService.registerNewShoppingCart(user);
             return user;
