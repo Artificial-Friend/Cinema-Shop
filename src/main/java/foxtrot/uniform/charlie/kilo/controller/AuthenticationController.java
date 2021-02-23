@@ -1,6 +1,7 @@
 package foxtrot.uniform.charlie.kilo.controller;
 
 import foxtrot.uniform.charlie.kilo.model.User;
+import foxtrot.uniform.charlie.kilo.model.dto.request.UserLoginDto;
 import foxtrot.uniform.charlie.kilo.model.dto.request.UserRegistrationDto;
 import foxtrot.uniform.charlie.kilo.security.jwt.JwtTokenProvider;
 import foxtrot.uniform.charlie.kilo.service.AuthenticationService;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,12 +41,13 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid UserRegistrationDto userDto) {
+    public void login(@RequestBody @Valid UserLoginDto userDto) {
         try {
             String username = userDto.getEmail();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,
                     userDto.getPassword()));
-            User user = userService.findByEmail(username).get();
+            User user = userService.findByEmail(username).orElseThrow(() ->
+                    new UsernameNotFoundException("Can't find " + username));
 
             String token = jwtTokenProvider.createToken(username, user.getRoles());
 
@@ -52,9 +55,9 @@ public class AuthenticationController {
             response.put("username", username);
             response.put("token", token);
 
-            return ResponseEntity.ok(response);
+            //return ResponseEntity.ok(response);
         } catch (Exception e) {
-            throw new RuntimeException("OK");
+            throw new RuntimeException("NOT OK");
         }
     }
 }
