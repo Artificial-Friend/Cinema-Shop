@@ -20,7 +20,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
-    //TODO
     private final JwtTokenProvider jwtTokenProvider;
 
     @Autowired
@@ -47,17 +46,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/register").permitAll()
-                .antMatchers(HttpMethod.POST,"/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT,"/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE,"/**").hasRole("ADMIN")
-//                .antMatchers(HttpMethod.GET, "/**").hasRole("ADMIN")
-//                .antMatchers(HttpMethod.GET, "/cinema-halls/**").hasRole("USER")
-//                .antMatchers(HttpMethod.GET, "/movies/**").hasRole("USER")
-//                .antMatchers(HttpMethod.GET, "/movie-sessions/available").hasRole("USER")
-//                .antMatchers(HttpMethod.GET, "/orders/**").hasRole("USER")
-//                .antMatchers(HttpMethod.GET, "/movies/**").hasRole("USER")
-//                .antMatchers(HttpMethod.GET, "/shopping-carts/**").hasRole("USER")
+                .antMatchers(HttpMethod.POST,"/register").permitAll()
+                .antMatchers(HttpMethod.POST, "/orders/complete").hasAuthority("USER")
+                .antMatchers(HttpMethod.POST, "/shopping-carts/movie-sessions").hasAuthority("USER")
+                .antMatchers(HttpMethod.GET, "/movies/*").hasAuthority("USER")
+                .antMatchers(HttpMethod.GET, "/orders").hasAuthority("USER")
+                .antMatchers(HttpMethod.POST,"/*").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PUT,"/*").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/*").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/*").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()

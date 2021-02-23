@@ -41,7 +41,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public void login(@RequestBody @Valid UserLoginDto userDto) {
+    public ResponseEntity<Map<Object, Object>> login(@RequestBody @Valid UserLoginDto userDto) {
         try {
             String username = userDto.getEmail();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,
@@ -55,7 +55,7 @@ public class AuthenticationController {
             response.put("username", username);
             response.put("token", token);
 
-            //return ResponseEntity.ok(response);
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
             throw new RuntimeException("NOT OK");
         }

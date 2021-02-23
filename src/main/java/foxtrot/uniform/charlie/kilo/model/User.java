@@ -25,9 +25,6 @@ public class User implements UserDetails {
     private String email;
     private String password;
     @ManyToMany
-    @JoinTable(name="users_roles",
-            joinColumns = {@JoinColumn(name="user_id", referencedColumnName="id")},
-            inverseJoinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")})
     private Set<Role> roles;
 
     public Long getId() {
