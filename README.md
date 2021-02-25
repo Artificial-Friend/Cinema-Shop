@@ -1,4 +1,4 @@
-# Space 
+# Space Travel App
 
 1. [Description](#description)
 2. [Application Structure](#application-structure)
