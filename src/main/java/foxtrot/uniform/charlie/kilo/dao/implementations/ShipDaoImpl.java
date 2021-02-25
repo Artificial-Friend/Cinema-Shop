@@ -1,8 +1,8 @@
 package foxtrot.uniform.charlie.kilo.dao.implementations;
 
-import foxtrot.uniform.charlie.kilo.dao.CinemaHallDao;
+import foxtrot.uniform.charlie.kilo.dao.ShipDao;
 import foxtrot.uniform.charlie.kilo.exception.DataProcessingException;
-import foxtrot.uniform.charlie.kilo.model.CinemaHall;
+import foxtrot.uniform.charlie.kilo.model.Ship;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,29 +12,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CinemaHallDaoImpl implements CinemaHallDao {
+public class ShipDaoImpl implements ShipDao {
     private final SessionFactory sessionFactory;
 
     @Autowired
-    public CinemaHallDaoImpl(SessionFactory sessionFactory) {
+    public ShipDaoImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     @Override
-    public CinemaHall add(CinemaHall cinemaHall) {
+    public Ship add(Ship ship) {
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.save(cinemaHall);
+            session.save(ship);
             transaction.commit();
-            return cinemaHall;
+            return ship;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("ERROR: can't add cinemaHall " + cinemaHall, e);
+            throw new DataProcessingException("ERROR: can't add ship: " + ship, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -43,22 +43,21 @@ public class CinemaHallDaoImpl implements CinemaHallDao {
     }
 
     @Override
-    public CinemaHall get(Long id) {
+    public Ship get(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            return session.get(CinemaHall.class, id);
+            return session.get(Ship.class, id);
         } catch (Exception e) {
-            throw new DataProcessingException("Can't get cinema hall with id " + id, e);
+            throw new DataProcessingException("ERROR: can't get ship with id: " + id, e);
         }
     }
 
     @Override
-    public List<CinemaHall> getAll() {
+    public List<Ship> getAll() {
         try (Session session = sessionFactory.openSession()) {
-            Query<CinemaHall> getAllMoviesQuery
-                    = session.createQuery("from CinemaHall", CinemaHall.class);
+            Query<Ship> getAllMoviesQuery = session.createQuery("from Ship", Ship.class);
             return getAllMoviesQuery.getResultList();
         } catch (Exception e) {
-            throw new DataProcessingException("ERROR: can't get all cinemaHalls", e);
+            throw new DataProcessingException("ERROR: can't get all ships", e);
         }
     }
 }

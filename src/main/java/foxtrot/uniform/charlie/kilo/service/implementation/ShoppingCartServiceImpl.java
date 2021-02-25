@@ -2,7 +2,7 @@ package foxtrot.uniform.charlie.kilo.service.implementation;
 
 import foxtrot.uniform.charlie.kilo.dao.ShoppingCartDao;
 import foxtrot.uniform.charlie.kilo.dao.TicketDao;
-import foxtrot.uniform.charlie.kilo.model.MovieSession;
+import foxtrot.uniform.charlie.kilo.model.Flight;
 import foxtrot.uniform.charlie.kilo.model.ShoppingCart;
 import foxtrot.uniform.charlie.kilo.model.Ticket;
 import foxtrot.uniform.charlie.kilo.model.User;
@@ -22,8 +22,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public void addSession(MovieSession movieSession, User user) {
-        Ticket ticket = new Ticket(movieSession, user);
+    public void addSession(Flight flight, User user) {
+        Ticket ticket = new Ticket(flight, user);
         ShoppingCart shoppingCartByUser = shoppingCartDao.getByUser(user);
         shoppingCartByUser.getTickets().add(ticket);
         ticketDao.add(ticket);

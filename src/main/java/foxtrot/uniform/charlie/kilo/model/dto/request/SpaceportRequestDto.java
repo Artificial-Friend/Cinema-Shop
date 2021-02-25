@@ -1,18 +1,18 @@
 package foxtrot.uniform.charlie.kilo.model.dto.request;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 
-public class MovieRequestDto {
-    @NotNull
-    private String title;
+public class SpaceportRequestDto {
+    @PositiveOrZero
+    private int hangarsQuantity;
     private String description;
 
-    public String getTitle() {
-        return title;
+    public int getHangarsQuantity() {
+        return hangarsQuantity;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setHangarsQuantity(int hangarsQuantity) {
+        this.hangarsQuantity = hangarsQuantity;
     }
 
     public String getDescription() {
@@ -25,7 +25,7 @@ public class MovieRequestDto {
 
     @Override
     public String toString() {
-        return "MovieDto{" + "id=" + ", title='" + title + '\''
+        return "CinemaHallDto{" + ", hangarsQuantity=" + hangarsQuantity
                 + ", description='" + description + '\'' + '}';
     }
 }

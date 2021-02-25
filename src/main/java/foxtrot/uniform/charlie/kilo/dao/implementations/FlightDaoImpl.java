@@ -1,8 +1,8 @@
 package foxtrot.uniform.charlie.kilo.dao.implementations;
 
-import foxtrot.uniform.charlie.kilo.dao.MovieSessionDao;
+import foxtrot.uniform.charlie.kilo.dao.FlightDao;
 import foxtrot.uniform.charlie.kilo.exception.DataProcessingException;
-import foxtrot.uniform.charlie.kilo.model.MovieSession;
+import foxtrot.uniform.charlie.kilo.model.Flight;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -15,47 +15,47 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MovieSessionDaoImpl implements MovieSessionDao {
+public class FlightDaoImpl implements FlightDao {
     private final SessionFactory sessionFactory;
 
     @Autowired
-    public MovieSessionDaoImpl(SessionFactory sessionFactory) {
+    public FlightDaoImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     @Override
-    public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {
+    public List<Flight> findAvailableFlights(Long shipId, LocalDate date) {
         try (Session session = sessionFactory.openSession()) {
-            Query<MovieSession> query = session.createQuery("SELECT ms FROM MovieSession ms "
-                    + "LEFT JOIN FETCH ms.cinemaHall "
-                    + "LEFT JOIN FETCH ms.movie "
-                    + "WHERE ms.movie.id = :movieId "
-                    + "AND TO_CHAR(ms.showTime, 'YYYY-MM-DD') = :date ",
-                    MovieSession.class);
-            query.setParameter("movieId", movieId);
+            Query<Flight> query = session.createQuery("SELECT f FROM Flight f "
+                    + "LEFT JOIN FETCH f.spaceport "
+                    + "LEFT JOIN FETCH f.ship "
+                    + "WHERE f.ship.id = :shipId "
+                    + "AND TO_CHAR(f.flightDateTime, 'YYYY-MM-DD') = :date ",
+                    Flight.class);
+            query.setParameter("shipId", shipId);
             query.setParameter("date", DateTimeFormatter.ISO_LOCAL_DATE.format(date));
             return query.getResultList();
         } catch (Exception e) {
-            throw new DataProcessingException("ERROR: can't find available sessions with movie id "
-                    + movieId + " and date " + date, e);
+            throw new DataProcessingException("ERROR: can't find available flights with ship id "
+                    + shipId + " and date " + date, e);
         }
     }
 
     @Override
-    public MovieSession add(MovieSession movieSession) {
+    public Flight add(Flight flight) {
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.save(movieSession);
+            session.save(flight);
             transaction.commit();
-            return movieSession;
+            return flight;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("ERROR: can't add movieSession " + movieSession, e);
+            throw new DataProcessingException("ERROR: can't add flight: " + flight, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -64,21 +64,21 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
     }
 
     @Override
-    public MovieSession update(MovieSession movieSession) {
+    public Flight update(Flight flight) {
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.update(movieSession);
+            session.update(flight);
             transaction.commit();
-            return movieSession;
+            return flight;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("ERROR: can't update movieSession "
-                    + movieSession, e);
+            throw new DataProcessingException("ERROR: can't update flight: "
+                    + flight, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -93,14 +93,14 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            MovieSession movieSession = session.load(MovieSession.class, id);
-            session.delete(movieSession);
+            Flight flight = session.load(Flight.class, id);
+            session.delete(flight);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("ERROR: can't delete movieSession with id "
+            throw new DataProcessingException("ERROR: can't delete flight with id "
                     + id, e);
         } finally {
             if (session != null) {
@@ -110,11 +110,11 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
     }
 
     @Override
-    public Optional<MovieSession> get(Long id) {
+    public Optional<Flight> get(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            return Optional.ofNullable(session.get(MovieSession.class, id));
+            return Optional.ofNullable(session.get(Flight.class, id));
         } catch (Exception e) {
-            throw new DataProcessingException("Can't get movie session with id " + id, e);
+            throw new DataProcessingException("Can't get flight with id " + id, e);
         }
     }
 }

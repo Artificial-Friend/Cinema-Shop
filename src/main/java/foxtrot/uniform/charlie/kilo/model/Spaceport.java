@@ -7,12 +7,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "movies")
-public class Movie {
+@Table(name = "cinema_halls")
+public class Spaceport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
+    private int hangarsQuantity;
     private String description;
 
     public Long getId() {
@@ -23,12 +23,12 @@ public class Movie {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public int getHangarsQuantity() {
+        return hangarsQuantity;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setHangarsQuantity(int capacity) {
+        this.hangarsQuantity = capacity;
     }
 
     public String getDescription() {
@@ -41,8 +41,8 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Movie{" + "id=" + id
-                + ", title='" + title + '\''
+        return "CinemaHall{" + "id=" + id
+                + ", hangarsQuantity=" + hangarsQuantity
                 + ", description='" + description + '\'' + '}';
     }
 }

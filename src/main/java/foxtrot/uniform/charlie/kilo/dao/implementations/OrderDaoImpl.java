@@ -33,7 +33,7 @@ public class OrderDaoImpl implements OrderDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("ERROR: can't add order " + order, e);
+            throw new RuntimeException("ERROR: can't add order: " + order, e);
         } finally {
             if (session != null) {
                 session.close();

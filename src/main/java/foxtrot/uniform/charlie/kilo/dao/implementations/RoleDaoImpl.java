@@ -31,7 +31,7 @@ public class RoleDaoImpl implements RoleDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't save role " + role, e);
+            throw new DataProcessingException("ERROR: can't save role: " + role, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -44,7 +44,7 @@ public class RoleDaoImpl implements RoleDao {
         try (Session session = sessionFactory.openSession()) {
             return session.get(Role.class, roleName);
         } catch (Exception e) {
-            throw new DataProcessingException("Can't get role '" + roleName + '\'', e);
+            throw new DataProcessingException("ERROR: can't get role: '" + roleName + '\'', e);
         }
     }
 }

@@ -1,5 +1,6 @@
 package foxtrot.uniform.charlie.kilo.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,13 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cinema_halls")
-public class CinemaHall {
+@Table(name = "ships")
+public class Ship {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
     private int capacity;
-    private String description;
+    @Column(unique = true)
+    private String identifier;
 
     public Long getId() {
         return id;
@@ -21,6 +24,10 @@ public class CinemaHall {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getCapacity() {
@@ -31,18 +38,23 @@ public class CinemaHall {
         this.capacity = capacity;
     }
 
-    public String getDescription() {
-        return description;
+    public void setName(String title) {
+        this.name = title;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(String description) {
+        this.identifier = description;
     }
 
     @Override
     public String toString() {
-        return "CinemaHall{" + "id=" + id
+        return "Ship{" + "id=" + id
+                + ", name='" + name + '\''
                 + ", capacity=" + capacity
-                + ", description='" + description + '\'' + '}';
+                + ", identifier='" + identifier + '\'' + '}';
     }
 }

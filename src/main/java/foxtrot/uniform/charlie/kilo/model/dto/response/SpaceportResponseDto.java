@@ -1,8 +1,8 @@
 package foxtrot.uniform.charlie.kilo.model.dto.response;
 
-public class CinemaHallResponseDto {
+public class SpaceportResponseDto {
     private Long id;
-    private int capacity;
+    private int hangarsQuantity;
     private String description;
 
     public Long getId() {
@@ -13,12 +13,12 @@ public class CinemaHallResponseDto {
         this.id = id;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public int getHangarsQuantity() {
+        return hangarsQuantity;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void setHangarsQuantity(int hangarsQuantity) {
+        this.hangarsQuantity = hangarsQuantity;
     }
 
     public String getDescription() {
@@ -32,7 +32,7 @@ public class CinemaHallResponseDto {
     @Override
     public String toString() {
         return "CinemaHallDto{" + "id=" + id
-                + ", capacity=" + capacity
+                + ", hangarsQuantity=" + hangarsQuantity
                 + ", description='" + description + '\'' + '}';
     }
 }

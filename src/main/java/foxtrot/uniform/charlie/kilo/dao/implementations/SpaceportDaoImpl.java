@@ -1,8 +1,8 @@
 package foxtrot.uniform.charlie.kilo.dao.implementations;
 
-import foxtrot.uniform.charlie.kilo.dao.MovieDao;
+import foxtrot.uniform.charlie.kilo.dao.SpaceportDao;
 import foxtrot.uniform.charlie.kilo.exception.DataProcessingException;
-import foxtrot.uniform.charlie.kilo.model.Movie;
+import foxtrot.uniform.charlie.kilo.model.Spaceport;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,29 +12,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MovieDaoImpl implements MovieDao {
+public class SpaceportDaoImpl implements SpaceportDao {
     private final SessionFactory sessionFactory;
 
     @Autowired
-    public MovieDaoImpl(SessionFactory sessionFactory) {
+    public SpaceportDaoImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     @Override
-    public Movie add(Movie movie) {
+    public Spaceport add(Spaceport spaceport) {
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.save(movie);
+            session.save(spaceport);
             transaction.commit();
-            return movie;
+            return spaceport;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("ERROR: can't add movie " + movie, e);
+            throw new DataProcessingException("ERROR: can't add spaceport: " + spaceport, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -43,21 +43,22 @@ public class MovieDaoImpl implements MovieDao {
     }
 
     @Override
-    public Movie get(Long id) {
+    public Spaceport get(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            return session.get(Movie.class, id);
+            return session.get(Spaceport.class, id);
         } catch (Exception e) {
-            throw new DataProcessingException("Can't get movie with id " + id, e);
+            throw new DataProcessingException("ERROR: can't get spaceport with id: " + id, e);
         }
     }
 
     @Override
-    public List<Movie> getAll() {
+    public List<Spaceport> getAll() {
         try (Session session = sessionFactory.openSession()) {
-            Query<Movie> getAllMoviesQuery = session.createQuery("from Movie", Movie.class);
+            Query<Spaceport> getAllMoviesQuery
+                    = session.createQuery("from Spaceport", Spaceport.class);
             return getAllMoviesQuery.getResultList();
         } catch (Exception e) {
-            throw new DataProcessingException("ERROR: can't get all movies", e);
+            throw new DataProcessingException("ERROR: can't get all spaceports", e);
         }
     }
 }
